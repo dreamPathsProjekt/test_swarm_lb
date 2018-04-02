@@ -4,13 +4,13 @@ services:
       
   password-api:
     ports:
-      - "5001:5001"
+      - "5000:5001"
 
   password-web:
     ports:
       - "8085:80"
     environment:
-      - "PasswordApi:Url=http://password-api:5001"
+      - "PasswordApi:Url=http://password-api:5000"
     depends_on:
       - password-api
 
