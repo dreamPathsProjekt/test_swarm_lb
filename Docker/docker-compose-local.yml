@@ -10,7 +10,7 @@ services:
     ports:
       - "8085:80"
     environment:
-      - "PasswordApi:Url=http://password-api:5000"
+      - "PasswordApi:Url=http://password-api:5001"
     depends_on:
       - password-api
 
