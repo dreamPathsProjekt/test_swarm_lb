@@ -17,7 +17,7 @@ services:
       password-net: null
     ports:
     - mode: host
-      published: 80
+      published: 8085
       target: 80
 version: '3.3'
 
