@@ -1,0 +1,23 @@
+networks:
+  password-net:
+    attachable: true
+    driver: overlay
+services:
+  password-api:
+    deploy:
+      endpoint_mode: dnsrr
+    image: sixeyed/password-api:v1
+    networks:
+      password-net: null
+  password-web:
+    environment:
+      PasswordApi:Url: http://password-api:5001
+    image: sixeyed/password-web:v1
+    networks:
+      password-net: null
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+version: '3.3'
+

@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    image: sixeyed/password-api:v1
+    networks:
+      - password-net
+
+  password-web:
+    image: sixeyed/password-web:v1
+    networks:
+      - password-net
+
+networks:
+  password-net:

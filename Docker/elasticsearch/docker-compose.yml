@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+      
+  elasticsearch:
+    image: elasticsearch:2.4.6-alpine
+    command: ["elasticsearch", "-Des.discovery.zen.ping.multicast.enabled=false", "-Des.discovery.zen.ping.unicast.hosts=elasticsearch", "-Des.gateway.expected_nodes=3", "-Des.discovery.zen.minimum_master_nodes=2",
+    "-Des.gateway.recover_after_nodes=2"]
+    ports:
+     - mode: host
+       published: 9200
+       target: 9200
+    volumes:
+      - es-data:/data
+    deploy:
+      mode: global
+      endpoint_mode: dnsrr
+    networks:
+      - app-net
+
+networks:
+  app-net:
+
+volumes:
+  es-data:
