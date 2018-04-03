@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    ports:
+      - mode: host
+        published: 8080
+        target: 5001
+    deploy:
+      mode: global
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    
+  password-web:
+    ports:
+      - mode: ingress
+        published: 80
+        target: 80
+    environment:
+      - "PasswordApi:Url=http://psod-swarm-win.westeurope.cloudapp.azure.com:8080"
+    deploy:
+      replicas: 6
+      placement:
+        constraints:
+        - node.platform.os == linux
+        - node.role == worker
+
+networks:
+  password-net:
